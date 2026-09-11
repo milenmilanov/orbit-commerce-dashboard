@@ -9,6 +9,18 @@ let products = loadProducts();
 // DOM REFERENCES
 // ========================================
 
+const notificationButton =
+  document.getElementById("notificationButton");
+
+const notificationPanel =
+  document.getElementById("notificationPanel");
+
+const notificationDot =
+  document.getElementById("notificationDot");
+
+const markNotificationsRead =
+  document.getElementById("markNotificationsRead");
+
 const navItems = document.querySelectorAll(".nav-item[data-view]");
 const views = document.querySelectorAll(".view");
 const pageTitle = document.getElementById("pageTitle");
@@ -723,7 +735,9 @@ document.addEventListener(
     if (event.key === "Escape") {
       productModal.classList.remove(
         "open"
+      notificationPanel.classList.remove("open");
       );
+      
 
       sidebar.classList.remove(
         "open"
@@ -749,5 +763,51 @@ function initializeApp() {
 
   buildRevenueChart(30);
 }
+// ========================================
+// NOTIFICATIONS
+// ========================================
 
+notificationButton.addEventListener(
+  "click",
+  event => {
+    event.stopPropagation();
+
+    notificationPanel.classList.toggle(
+      "open"
+    );
+  }
+);
+
+
+document.addEventListener(
+  "click",
+  event => {
+    if (
+      !notificationPanel.contains(event.target) &&
+      !notificationButton.contains(event.target)
+    ) {
+      notificationPanel.classList.remove(
+        "open"
+      );
+    }
+  }
+);
+
+
+markNotificationsRead.addEventListener(
+  "click",
+  () => {
+    document
+      .querySelectorAll(
+        ".notification-item.unread"
+      )
+      .forEach(item => {
+        item.classList.remove("unread");
+      });
+
+    notificationDot.classList.add(
+      "hidden"
+    );
+  }
+);
 initializeApp();
