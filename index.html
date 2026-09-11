@@ -119,10 +119,73 @@
           ◐
         </button>
 
-        <button class="notification-button">
-          ♢
-          <span></span>
-        </button>
+        <div class="notification-wrapper">
+
+  <button
+    class="notification-button"
+    id="notificationButton"
+    aria-label="Open notifications"
+  >
+    ♢
+    <span class="notification-dot" id="notificationDot"></span>
+  </button>
+
+  <div
+    class="notification-panel"
+    id="notificationPanel"
+  >
+
+    <div class="notification-panel-header">
+      <div>
+        <p class="panel-label">NOTIFICATIONS</p>
+        <h3>Store activity</h3>
+      </div>
+
+      <button
+        class="mark-read-button"
+        id="markNotificationsRead"
+      >
+        Mark all read
+      </button>
+    </div>
+
+    <div class="notification-list">
+
+      <div class="notification-item unread">
+        <div class="notification-icon">!</div>
+
+        <div>
+          <strong>Low stock alert</strong>
+          <p>Utility Tote has only 2 units remaining.</p>
+          <small>5 min ago</small>
+        </div>
+      </div>
+
+      <div class="notification-item unread">
+        <div class="notification-icon">€</div>
+
+        <div>
+          <strong>New order received</strong>
+          <p>Order #1049 has been placed for €119.</p>
+          <small>18 min ago</small>
+        </div>
+      </div>
+
+      <div class="notification-item unread">
+        <div class="notification-icon">↗</div>
+
+        <div>
+          <strong>Revenue increased</strong>
+          <p>Revenue is up 12.4% compared with the previous period.</p>
+          <small>Today</small>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
       </div>
 
