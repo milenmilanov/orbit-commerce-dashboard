@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ORBIT — Commerce Dashboard</title>
+
+  <meta
+    name="description"
+    content="ORBIT — Interactive e-commerce analytics dashboard built by Milen Milanov."
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <div class="brand-mark">O</div>
+
+      <div>
+        <strong>ORBIT</strong>
+        <span>Commerce</span>
+      </div>
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+      <button class="nav-item active" data-view="overview">
+        <span>⌂</span>
+        Overview
+      </button>
+
+      <button class="nav-item" data-view="orders">
+        <span>▤</span>
+        Orders
+      </button>
+
+      <button class="nav-item" data-view="products">
+        <span>□</span>
+        Products
+      </button>
+
+      <button class="nav-item" data-view="customers">
+        <span>◎</span>
+        Customers
+      </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+      <button class="nav-item">
+        <span>⚙</span>
+        Settings
+      </button>
+
+      <div class="user-card">
+
+        <div class="avatar">
+          MM
+        </div>
+
+        <div>
+          <strong>Milen</strong>
+          <span>Administrator</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button
+          class="mobile-menu-button"
+          id="mobileMenuButton"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+
+        <div>
+          <p class="eyebrow">
+            ORBIT COMMERCE
+          </p>
+
+          <h1 id="pageTitle">
+            Overview
+          </h1>
+        </div>
+
+      </div>
+
+
+      <div class="topbar-actions">
+
+        <button class="icon-button" id="themeButton">
+          ◐
+        </button>
+
+        <button class="notification-button">
+          ♢
+          <span></span>
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- OVERVIEW -->
+
+    <section
+      class="view active"
+      id="overviewView"
+    >
+
+      <div class="welcome-row">
+
+        <div>
+
+          <h2>
+            Good morning, Milen.
+          </h2>
+
+          <p>
+            Here's what's happening with your store today.
+          </p>
+
+        </div>
+
+
+        <select id="dateRange">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+        </select>
+
+      </div>
+
+
+      <!-- KPI CARDS -->
+
+      <div class="stats-grid">
+
+        <article class="stat-card">
+
+          <div class="stat-top">
+            <span>REVENUE</span>
+            <span class="positive">+12.4%</span>
+          </div>
+
+          <strong id="revenueStat">
+            €24,892
+          </strong>
+
+          <small>
+            vs previous period
+          </small>
+
+        </article>
+
+
+        <article class="stat-card">
+
+          <div class="stat-top">
+            <span>ORDERS</span>
+            <span class="positive">+8.7%</span>
+          </div>
+
+          <strong id="ordersStat">
+            364
+          </strong>
+
+          <small>
+            42 today
+          </small>
+
+        </article>
+
+
+        <article class="stat-card">
+
+          <div class="stat-top">
+            <span>AVG. ORDER VALUE</span>
+            <span class="positive">+4.1%</span>
+          </div>
+
+          <strong id="aovStat">
+            €68.38
+          </strong>
+
+          <small>
+            per order
+          </small>
+
+        </article>
+
+
+        <article class="stat-card">
+
+          <div class="stat-top">
+            <span>CONVERSION RATE</span>
+            <span class="negative">−0.6%</span>
+          </div>
+
+          <strong id="conversionStat">
+            3.8%
+          </strong>
+
+          <small>
+            9,584 sessions
+          </small>
+
+        </article>
+
+      </div>
+
+
+      <!-- ANALYTICS GRID -->
+
+      <div class="analytics-grid">
+
+        <!-- REVENUE CHART -->
+
+        <article class="panel revenue-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <p class="panel-label">
+                REVENUE
+              </p>
+
+              <h3>
+                Sales performance
+              </h3>
+            </div>
+
+
+            <div class="chart-legend">
+
+              <span>
+                <i class="legend-current"></i>
+                Current
+              </span>
+
+              <span>
+                <i class="legend-previous"></i>
+                Previous
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="chart-container">
+
+            <canvas id="revenueChart"></canvas>
+
+          </div>
+
+        </article>
+
+
+        <!-- SALES CHANNELS -->
+
+        <article class="panel">
+
+          <div class="panel-header">
+
+            <div>
+              <p class="panel-label">
+                CHANNELS
+              </p>
+
+              <h3>
+                Sales sources
+              </h3>
+            </div>
+
+          </div>
+
+
+          <div class="channel-list">
+
+            <div class="channel-row">
+
+              <div>
+                <span class="channel-dot"></span>
+                Online Store
+              </div>
+
+              <strong>76%</strong>
+
+            </div>
+
+
+            <div class="channel-bar">
+              <span style="width: 76%"></span>
+            </div>
+
+
+            <div class="channel-row">
+
+              <div>
+                <span class="channel-dot secondary"></span>
+                Social
+              </div>
+
+              <strong>18%</strong>
+
+            </div>
+
+
+            <div class="channel-bar">
+              <span class="secondary-bar" style="width: 18%"></span>
+            </div>
+
+
+            <div class="channel-row">
+
+              <div>
+                <span class="channel-dot tertiary"></span>
+                Direct
+              </div>
+
+              <strong>6%</strong>
+
+            </div>
+
+
+            <div class="channel-bar">
+              <span class="tertiary-bar" style="width: 6%"></span>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <!-- RECENT ORDERS -->
+
+      <article class="panel table-panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <p class="panel-label">
+              ORDERS
+            </p>
+
+            <h3>
+              Recent orders
+            </h3>
+
+          </div>
+
+          <button
+            class="text-button"
+            data-view-target="orders"
+          >
+            View all →
+          </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>ORDER</th>
+                <th>CUSTOMER</th>
+                <th>CITY</th>
+                <th>STATUS</th>
+                <th>TOTAL</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="recentOrdersBody"></tbody>
+
+          </table>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- ORDERS VIEW -->
+
+    <section
+      class="view"
+      id="ordersView"
+    >
+
+      <div class="view-header">
+
+        <div>
+          <h2>Orders</h2>
+          <p>
+            Search, filter and manage customer orders.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="toolbar">
+
+        <input
+          type="search"
+          id="orderSearch"
+          placeholder="Search orders..."
+        >
+
+        <select id="orderStatusFilter">
+          <option value="all">All statuses</option>
+          <option value="Paid">Paid</option>
+          <option value="Pending">Pending</option>
+          <option value="Refunded">Refunded</option>
+        </select>
+
+      </div>
+
+
+      <article class="panel table-panel">
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>ORDER</th>
+                <th>CUSTOMER</th>
+                <th>CITY</th>
+                <th>STATUS</th>
+                <th>FULFILLMENT</th>
+                <th>TOTAL</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="ordersBody"></tbody>
+
+          </table>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- PRODUCTS VIEW -->
+
+    <section
+      class="view"
+      id="productsView"
+    >
+
+      <div class="view-header">
+
+        <div>
+          <h2>Products</h2>
+          <p>
+            Manage inventory and product availability.
+          </p>
+        </div>
+
+        <button
+          class="primary-button"
+          id="addProductButton"
+        >
+          + Add product
+        </button>
+
+      </div>
+
+
+      <div class="product-controls">
+
+        <input
+          type="search"
+          id="productSearch"
+          placeholder="Search products..."
+        >
+
+        <select id="stockFilter">
+          <option value="all">All stock levels</option>
+          <option value="low">Low stock</option>
+          <option value="available">Available</option>
+        </select>
+
+      </div>
+
+
+      <div
+        class="product-management-grid"
+        id="productGrid"
+      ></div>
+
+    </section>
+
+
+    <!-- CUSTOMERS VIEW -->
+
+    <section
+      class="view"
+      id="customersView"
+    >
+
+      <div class="view-header">
+
+        <div>
+          <h2>Customers</h2>
+          <p>
+            Understand your highest-value customers.
+          </p>
+        </div>
+
+      </div>
+
+
+      <article class="panel table-panel">
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>CUSTOMER</th>
+                <th>LOCATION</th>
+                <th>ORDERS</th>
+                <th>TOTAL SPENT</th>
+                <th>SEGMENT</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="customersBody"></tbody>
+
+          </table>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- PRODUCT MODAL -->
+
+<div
+  class="modal-overlay"
+  id="productModal"
+>
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <div>
+        <p class="panel-label">
+          PRODUCT
+        </p>
+
+        <h3 id="modalTitle">
+          Add product
+        </h3>
+      </div>
+
+      <button
+        class="modal-close"
+        id="closeProductModal"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <form id="productForm">
+
+      <input
+        type="hidden"
+        id="productId"
+      >
+
+
+      <label>
+        Product name
+
+        <input
+          type="text"
+          id="productName"
+          required
+        >
+      </label>
+
+
+      <label>
+        Category
+
+        <input
+          type="text"
+          id="productCategory"
+          required
+        >
+      </label>
+
+
+      <div class="form-row">
+
+        <label>
+          Price
+
+          <input
+            type="number"
+            id="productPrice"
+            min="0"
+            step="0.01"
+            required
+          >
+        </label>
+
+
+        <label>
+          Stock
+
+          <input
+            type="number"
+            id="productStock"
+            min="0"
+            required
+          >
+        </label>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="primary-button full"
+      >
+        Save product
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
