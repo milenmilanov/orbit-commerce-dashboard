@@ -733,15 +733,9 @@ document.addEventListener(
   "keydown",
   event => {
     if (event.key === "Escape") {
-      productModal.classList.remove(
-        "open"
+      productModal.classList.remove("open");
       notificationPanel.classList.remove("open");
-      );
-      
-
-      sidebar.classList.remove(
-        "open"
-      );
+      sidebar.classList.remove("open");
     }
   }
 );
